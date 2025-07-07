@@ -1,169 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Boxes</title>
   <style>
-    * {
-      box-sizing: border-box;
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      font-family: sans-serif;
-      height: 100vh;
+      background-color: #fff;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      padding: 20px;
-      background-color: #f0f0f0;
-    }
-
-    .box {
-      background-color: white;
-      border-radius: 8px;
-      padding: 20px;
-      flex: 1;
-      transition: all 0.3s ease;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      padding-top: 2rem;
     }
 
-    .box.expanded {
-      flex: 3;
-      background-color: #e9f5ff;
-    }
-
-    .options {
-      opacity: 0;
-      max-height: 0;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      margin-top: 20px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .box.expanded .options {
-      opacity: 1;
-      max-height: 200px;
-    }
-
-    .label {
-      font-size: 1.2em;
+    h1 {
+      color: #e91e63;
+      font-size: 24px;
+      margin-bottom: 1rem;
       font-weight: bold;
     }
 
-    .options-section {
-      margin-top: 10px;
+    .option-box {
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      margin: 1rem 0;
+      padding: 1rem;
+      width: 90%;
+      max-width: 500px;
+      transition: all 0.3s ease-in-out;
+      position: relative;
     }
 
-    .color-option,
-    .size-option {
-      display: inline-block;
-      padding: 8px 14px;
-      margin: 5px;
-      border: 1px solid #999;
-      border-radius: 20px;
+    .option-box.active {
+      border-color: #4caf50;
+      background-color: #f0fff4;
+    }
+
+    .option-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .option-header .discount {
+      background-color: #f06292;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .option-header .price {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .option-body {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    .option-box.active .option-body {
+      display: block;
+    }
+
+    .selectors {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    select {
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    .add-to-cart {
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 16px;
+      margin-top: 2rem;
       cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .color-option:hover,
-    .size-option:hover {
-      background-color: #ddd;
+      border-radius: 6px;
+      width: 90%;
+      max-width: 500px;
     }
   </style>
 </head>
 <body>
+  <h1>Bundle & Save</h1>
 
-  <div class="box" data-box="1">
-    <div class="label">Box 1</div>
-    <div class="options">
-      <div class="options-section">
-        <strong>Colors:</strong>
-        <div>
-          <span class="color-option">Red</span>
-          <span class="color-option">Blue</span>
-          <span class="color-option">Green</span>
-        </div>
+  <div class="option-box" onclick="toggleBox(this)">
+    <div class="option-header">
+      <div>
+        <input type="radio" name="bundle"> 1 Pair <span class="discount">50% OFF</span>
       </div>
-      <div class="options-section">
-        <strong>Sizes:</strong>
-        <div>
-          <span class="size-option">Small</span>
-          <span class="size-option">Medium</span>
-          <span class="size-option">Large</span>
-        </div>
+      <div class="price">DKK 195.00</div>
+    </div>
+  </div>
+
+  <div class="option-box active" onclick="toggleBox(this)">
+    <div class="option-header">
+      <div>
+        <input type="radio" name="bundle" checked> 2 Pair <span class="discount">40% OFF</span>
+      </div>
+      <div class="price">DKK 345.00</div>
+    </div>
+    <div class="option-body">
+      <div class="selectors">
+        <label>#1
+          <select>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+        </label>
+        <select>
+          <option>Black</option>
+          <option>Blue</option>
+        </select>
+      </div>
+      <div class="selectors">
+        <label>#2
+          <select>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+        </label>
+        <select>
+          <option>Colour</option>
+          <option>Black</option>
+        </select>
       </div>
     </div>
   </div>
 
-  <div class="box" data-box="2">
-    <div class="label">Box 2</div>
-    <div class="options">
-      <div class="options-section">
-        <strong>Colors:</strong>
-        <div>
-          <span class="color-option">Red</span>
-          <span class="color-option">Blue</span>
-          <span class="color-option">Green</span>
-        </div>
+  <div class="option-box" onclick="toggleBox(this)">
+    <div class="option-header">
+      <div>
+        <input type="radio" name="bundle"> 3 Pair <span class="discount">60% OFF</span>
       </div>
-      <div class="options-section">
-        <strong>Sizes:</strong>
-        <div>
-          <span class="size-option">Small</span>
-          <span class="size-option">Medium</span>
-          <span class="size-option">Large</span>
-        </div>
-      </div>
+      <div class="price">DKK 528.00</div>
     </div>
   </div>
 
-  <div class="box" data-box="3">
-    <div class="label">Box 3</div>
-    <div class="options">
-      <div class="options-section">
-        <strong>Colors:</strong>
-        <div>
-          <span class="color-option">Red</span>
-          <span class="color-option">Blue</span>
-          <span class="color-option">Green</span>
-        </div>
-      </div>
-      <div class="options-section">
-        <strong>Sizes:</strong>
-        <div>
-          <span class="size-option">Small</span>
-          <span class="size-option">Medium</span>
-          <span class="size-option">Large</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div style="margin-top: 1rem; color: #4caf50; font-weight: bold;">Free 2 Day Shipping</div>
+  <div style="margin-top: 0.5rem; font-weight: bold;">Total : DKK 360.00</div>
+  <button class="add-to-cart">+ Add to Cart</button>
 
   <script>
-    const boxes = document.querySelectorAll('.box');
-
-    boxes.forEach((box) => {
-      box.addEventListener('click', () => {
-        // Collapse other boxes
-        boxes.forEach((b) => {
-          if (b !== box) b.classList.remove('expanded');
-        });
-
-        // Toggle current box
-        box.classList.toggle('expanded');
-      });
-    });
+    function toggleBox(clickedBox) {
+      const boxes = document.querySelectorAll('.option-box');
+      boxes.forEach(box => box.classList.remove('active'));
+      clickedBox.classList.add('active');
+      const radios = clickedBox.querySelectorAll('input[type="radio"]');
+      radios.forEach(r => r.checked = true);
+    }
   </script>
 </body>
 </html>
