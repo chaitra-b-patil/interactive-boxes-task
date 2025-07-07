@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Boxes</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    .box {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      flex: 1;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box.expanded {
+      flex: 3;
+      background-color: #e9f5ff;
+    }
+
+    .options {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .box.expanded .options {
+      opacity: 1;
+      max-height: 200px;
+    }
+
+    .label {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .options-section {
+      margin-top: 10px;
+    }
+
+    .color-option,
+    .size-option {
+      display: inline-block;
+      padding: 8px 14px;
+      margin: 5px;
+      border: 1px solid #999;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .color-option:hover,
+    .size-option:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box" data-box="1">
+    <div class="label">Box 1</div>
+    <div class="options">
+      <div class="options-section">
+        <strong>Colors:</strong>
+        <div>
+          <span class="color-option">Red</span>
+          <span class="color-option">Blue</span>
+          <span class="color-option">Green</span>
+        </div>
+      </div>
+      <div class="options-section">
+        <strong>Sizes:</strong>
+        <div>
+          <span class="size-option">Small</span>
+          <span class="size-option">Medium</span>
+          <span class="size-option">Large</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" data-box="2">
+    <div class="label">Box 2</div>
+    <div class="options">
+      <div class="options-section">
+        <strong>Colors:</strong>
+        <div>
+          <span class="color-option">Red</span>
+          <span class="color-option">Blue</span>
+          <span class="color-option">Green</span>
+        </div>
+      </div>
+      <div class="options-section">
+        <strong>Sizes:</strong>
+        <div>
+          <span class="size-option">Small</span>
+          <span class="size-option">Medium</span>
+          <span class="size-option">Large</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" data-box="3">
+    <div class="label">Box 3</div>
+    <div class="options">
+      <div class="options-section">
+        <strong>Colors:</strong>
+        <div>
+          <span class="color-option">Red</span>
+          <span class="color-option">Blue</span>
+          <span class="color-option">Green</span>
+        </div>
+      </div>
+      <div class="options-section">
+        <strong>Sizes:</strong>
+        <div>
+          <span class="size-option">Small</span>
+          <span class="size-option">Medium</span>
+          <span class="size-option">Large</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const boxes = document.querySelectorAll('.box');
+
+    boxes.forEach((box) => {
+      box.addEventListener('click', () => {
+        // Collapse other boxes
+        boxes.forEach((b) => {
+          if (b !== box) b.classList.remove('expanded');
+        });
+
+        // Toggle current box
+        box.classList.toggle('expanded');
+      });
+    });
+  </script>
+</body>
+</html>
