@@ -14,7 +14,7 @@ This project replicates the design and behavior shown in the provided Loom video
 - Color and size option buttons
 
 ## 📺 Demo
-[Live Demo](https://your-username.github.io/interactive-boxes-task/)
+[Live Demo](https://chaitra-b-patil.github.io/interactive-boxes-task/)
 
 ## 📁 Figma & Loom References
 - [Figma Design](https://www.figma.com/file/FUyAi4WDU6pLgYQlutb7nJ/16-Dec---Screening---Screening-Task-For-Front-End-Developer-(Copy)?type=design&node-id=0-1&mode=design&t=Zmf7Zn8mJ2PjyOsp-0)
